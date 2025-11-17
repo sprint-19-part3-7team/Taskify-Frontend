@@ -1,0 +1,125 @@
+@layer utilities {
+  /* Text-3xl (32px/42px) */
+  .text-3xl-bold {
+    @apply text-[32px] leading-[42px];
+    font-weight: 700; /* Pretendard Bold */
+  }
+  .text-3xl-semibold {
+    @apply text-[32px] leading-[42px];
+    font-weight: 600; /* Pretendard SemiBold */
+  }
+
+  /* Text-2xl (24px/32px) */
+  .text-2xl-bold {
+    @apply text-[24px] leading-[32px];
+    font-weight: 700;
+  }
+  .text-2xl-semibold {
+    @apply text-[24px] leading-[32px];
+    font-weight: 600;
+  }
+  .text-2xl-medium {
+    @apply text-[24px] leading-[32px];
+    font-weight: 500;
+  }
+  .text-2xl-regular {
+    @apply text-[24px] leading-[32px];
+    font-weight: 400;
+  }
+
+  /* Text-xl (20px/32px) */
+  .text-xl-bold {
+    @apply text-[20px] leading-[32px];
+    font-weight: 700;
+  }
+  .text-xl-semibold {
+    @apply text-[20px] leading-[32px];
+    font-weight: 600;
+  }
+  .text-xl-medium {
+    @apply text-[20px] leading-[32px];
+    font-weight: 500;
+  }
+  .text-xl-regular {
+    @apply text-[20px] leading-[32px];
+    font-weight: 400;
+  }
+
+  /* Text-2lg (18px/26px) */
+  .text-2lg-bold {
+    @apply text-[18px] leading-[26px];
+    font-weight: 700;
+  }
+  .text-2lg-semibold {
+    @apply text-[18px] leading-[26px];
+    font-weight: 600;
+  }
+  .text-2lg-medium {
+    @apply text-[18px] leading-[26px];
+    font-weight: 500;
+  }
+  .text-2lg-regular {
+    @apply text-[18px] leading-[26px];
+    font-weight: 400;
+  }
+
+  /* Text-lg (16px/26px) */
+  .text-lg-bold {
+    @apply text-[16px] leading-[26px];
+    font-weight: 700;
+  }
+  .text-lg-semibold {
+    @apply text-[16px] leading-[26px];
+    font-weight: 600;
+  }
+  .text-lg-medium {
+    @apply text-[16px] leading-[26px];
+    font-weight: 500;
+  }
+  .text-lg-regular {
+    @apply text-[16px] leading-[26px];
+    font-weight: 400;
+  }
+
+  /* Text-md (14px/24px) */
+  .text-md-bold {
+    @apply text-[14px] leading-[24px];
+    font-weight: 700;
+  }
+  .text-md-semibold {
+    @apply text-[14px] leading-[24px];
+    font-weight: 600;
+  }
+  .text-md-medium {
+    @apply text-[14px] leading-[24px];
+    font-weight: 500;
+  }
+  .text-md-regular {
+    @apply text-[14px] leading-[24px];
+    font-weight: 400;
+  }
+
+  /* Text-sm (13px/22px) */
+  .text-sm-semibold {
+    @apply text-[13px] leading-[22px];
+    font-weight: 600;
+  }
+  .text-sm-medium {
+    @apply text-[13px] leading-[22px];
+    font-weight: 500;
+  }
+
+  /* Text-xs (12px) */
+  .text-xs-semibold {
+    @apply text-[12px] leading-[20px];
+    font-weight: 600;
+  }
+  .text-xs-medium {
+    @apply text-[12px] leading-[18px];
+    font-weight: 500;
+  }
+  .text-xs-regular {
+    @apply text-[12px] leading-[18px];
+    font-weight: 400;
+  }
+}

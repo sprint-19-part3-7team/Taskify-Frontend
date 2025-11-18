@@ -1,26 +1,27 @@
-/* 컬러 변수 */
+@theme {
+  --color-black-400: #000000;
+  --color-black-300: #171717;
+  --color-black-200: #333236;
+  --color-black-100: #4b4b4b;
 
-:root {
+  --color-gray-500: #787486;
+  --color-gray-400: #9fa6b2;
+  --color-gray-300: #d9d9d9;
+  --color-gray-200: #eeeeee;
+  --color-gray-100: #fafafa;
 
-  --black-000000: #000000;
-  --black-171717: #171717;
-  --black-333236: #333236;
-  --black-4B4B4B: #4b4b4b;
+  --color-white-100: #ffffff;
 
-  --gray-787486: #787486;
-  --gray-9FA6B2: #9fa6b2;
-  --gray-D9D9D9: #d9d9d9;
-  --gray-EEEEEE: #eeeeee;
-  --gray-FAFAFA: #fafafa;
+  --color-violet-500: #5534da;
+  --color-violet-500-08: #f1effd;
+  --color-red-500: #d6173a;
+  --color-green-500: #7ac555;
+  --color-purple-500: #760dde;
+  --color-orange-500: #ffa500;
+  --color-blue-500: #76a5ea;
+  --color-pink-500: #e876ea;
 
-  --white-FFFFFF: #ffffff;
-
-  --violet-5534DA: #5534da;
-  --violet-8: #f1effd;
-  --red-D6173A: #d6173a;
-  --green-7AC555: #7ac555;
-  --purple-760DDE: #760dde;
-  --orange-FFA500: #ffa500;
-  --blue-76A5EA: #76a5ea;
-  --pink-E876EA: #e876ea;
+  --color-primary: var(--color-violet-500);
+  --color-error: var(--color-red-500);
+  --color-bg: var(--color-gray-100);
 }

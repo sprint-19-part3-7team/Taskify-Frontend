@@ -26,6 +26,6 @@
   font-weight: 700;
 }
 
-html {
-  font-family: Pretendard, sans-serif;
+@theme {
+  --font-sans: 'Pretendard', sans-serif;
 }

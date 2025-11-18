@@ -1,5 +1,7 @@
+import Router from '@/router/Router';
+
 function App() {
-  return <>메인</>;
+  return <Router />;
 }
 
 export default App;

@@ -1,5 +1,8 @@
 /* font-size, line-height 변수 정의 */
 @theme {
+  --text-*: initial;
+  --leading-*: initial;
+
   --text-xs: 0.75rem;
   --text-sm: 0.8125rem;
   --text-md: 0.875rem;

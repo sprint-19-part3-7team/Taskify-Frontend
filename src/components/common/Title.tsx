@@ -26,7 +26,7 @@ function Title({
   className = '',
   size = '2xl',
   weight = 'regular',
-  color = '--color-gray-700', // 기본값 gray-700
+  color = '--color-gray-700',
 }: TitleProps) {
   const twClass = `font-${size}-${weight} ${className}`;
   return (

@@ -3,12 +3,12 @@
 
   .font-3xl-bold {
     @apply text-[2rem] leading-10.5;
-    font-weight: 700; /* Pretendard Bold */
+    font-weight: 700;
   }
 
   .font-3xl-semibold {
     @apply text-[2rem] leading-10.5;
-    font-weight: 600; /* Pretendard SemiBold */
+    font-weight: 600;
   }
 
   /* Text-2xl (24px/32px) */

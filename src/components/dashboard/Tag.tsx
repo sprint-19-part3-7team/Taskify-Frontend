@@ -23,6 +23,9 @@ interface TagProps {
 }
 
 /**
+ * Tag 컴포넌트
+ * 대시보드 카드, 태그 인풋에서 사용되는 컴포넌트입니다.
+ *
  * @example
  * ```tsx
  * <Tag color='orange'>태그</Tag>

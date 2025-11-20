@@ -1,11 +1,41 @@
 import axios from 'axios';
+import { getAccessToken } from '@/utils/token';
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  timeout: 5000,
-  headers: { 'Content-Type': 'application/json' },
-});
+const API_URL = import.meta.env.VITE_API_URL;
 
-export default api;
+interface CreateApiOptions {
+  timeout?: number;
+  contentType?: string | null;
+}
 
-// TODO: 인터셉터로 Authorization 헤더에 토큰 전달하도록 구현
+const createApi = ({ timeout = 5000, contentType = 'application/json' }: CreateApiOptions) => {
+  const instance = axios.create({
+    baseURL: API_URL,
+    timeout,
+    headers: { 'Content-Type': contentType },
+  });
+
+  instance.interceptors.request.use((config) => {
+    const token = getAccessToken();
+    if (token) {
+      config.headers = config.headers ?? {};
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  });
+
+  return instance;
+};
+
+/**
+ * ### 기본 API 인스턴스
+ * timeout `5s`
+ */
+export const api = createApi({});
+
+/**
+ * ### 파일 업로드용 API 인스턴스
+ * 카드 이미지 업로드, 프로필 이미지 업로드 시 사용하는 인스턴스입니다.
+ * timeout `30s`
+ */
+export const fileApi = createApi({ timeout: 30000, contentType: null });

@@ -1,10 +1,14 @@
-import { Button } from '@/components/common/ImageUploader';
-
-export default function Home() {
+import { ImageUpload } from '@/components/common/ImageUploader';
+export default function App() {
   return (
-    <div>
-      <Button size='Small' />
-      <Button size='Large' />
+    <div className='flex flex-col gap-8 p-8'>
+      <div>
+        <ImageUpload size='Small' />
+      </div>
+
+      <div>
+        <ImageUpload size='Large' />
+      </div>
     </div>
   );
 }

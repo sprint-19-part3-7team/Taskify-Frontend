@@ -1,13 +1,6 @@
 import { cva } from 'class-variance-authority';
+import type { VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
-
-interface TitleProps {
-  as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  children: React.ReactNode;
-  className?: string;
-  size?: '3xl' | '2xl' | 'xl' | '2lg' | 'lg' | 'md' | 'sm' | 'xs';
-  weight?: 'bold' | 'semibold' | 'medium' | 'regular';
-}
 
 const titleVariants = cva('text-gray-700', {
   variants: {
@@ -33,6 +26,12 @@ const titleVariants = cva('text-gray-700', {
     weight: 'regular',
   },
 });
+
+interface TitleProps extends VariantProps<typeof titleVariants> {
+  as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  children: React.ReactNode;
+  className?: string;
+}
 
 /**
  * Title 컴포넌트

@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import CloseIcon from '@/assets/icons/dashboard/ic-close.svg';
 import PlusIcon from '@/assets/icons/dashboard/ic-plus.svg';
 import { cn } from '@/utils/cn';
 
@@ -9,6 +10,15 @@ type ImageUploadProps = {
 export function ImageUpload({ size = 'Small' }: ImageUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null); // 선택한 이미지의 URL 저장
+
+  // 파일 제거 버튼
+  const handleRemoveImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setPreview(null);
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
+  };
 
   // 버튼 클릭 시 파일 선택 창 열기
   const handleButtonClick = () => inputRef.current?.click();
@@ -45,8 +55,15 @@ export function ImageUpload({ size = 'Small' }: ImageUploadProps) {
           backgroundPosition: 'center', // 이미지 중앙 정렬
         }}>
         {/* 이미지가 없을 때만 + 아이콘 표시 */}
-        {!preview && <PlusIcon className='h-7 w-7 text-violet-500' />}
+        {!preview && <PlusIcon className={cn('h-7 w-7 text-violet-500')} />}
       </button>
+
+      {/* 닫기 버튼*/}
+      {preview && (
+        <button onClick={handleRemoveImage} className={cn('h-4 w-4 rounded-full bg-gray-600')}>
+          <CloseIcon className={cn('h-4 w-4 flex-shrink-0 text-gray-0')} />
+        </button>
+      )}
 
       {/* 실제 파일 input은 화면에 표시하지 않고 숨김 */}
       <input
@@ -59,4 +76,3 @@ export function ImageUpload({ size = 'Small' }: ImageUploadProps) {
     </div>
   );
 }
-// 이미지 파일 추가 하고 X 아이콘을 누르면 다시 입력 폼 상태로 돌아감

@@ -1,6 +1,5 @@
 import { cva } from 'class-variance-authority';
 import type { ColorType } from '@/types/ui';
-import { cn } from '@/utils/cn';
 
 const tagStyles = cva(
   'inline-block px-1.5 py-1 rounded-sm font-xs-regular sm:py-0.5 sm:font-md-regular',
@@ -32,5 +31,5 @@ interface TagProps {
  * ```
  */
 export default function Tag({ children, color }: TagProps) {
-  return <span className={cn(tagStyles({ color }))}>{children}</span>;
+  return <span className={tagStyles({ color })}>{children}</span>;
 }

@@ -43,19 +43,22 @@ export function ImageUpload({ size = 'Small' }: ImageUploadProps) {
     }
   };
 
-  // 버튼 크기 스타일 정의
-  const buttonSizes: Record<'Small' | 'Large', string> = {
-    Small: 'w-[76px] h-[76px]',
-    Large: 'w-[182px]  h-[182px]',
-  };
-
   return (
     <div className='relative inline-block'>
       {/* 이미지 선택 버튼 */}
       <button
         className={cn(
           'flex items-center justify-center overflow-hidden rounded-md bg-gray-200',
-          buttonSizes[size]
+
+          // Small 사이즈
+          // - 모바일 기본: 58px
+          // - sm(640px~): 76px
+          size === 'Small' && 'h-[58px] w-[58px] sm:h-[76px] sm:w-[76px]',
+
+          // Large 사이즈
+          // - 모바일 기본: 100px
+          // - sm(640px~): 182px
+          size === 'Large' && 'h-[100px] w-[100px] sm:h-[182px] sm:w-[182px]'
         )}
         onClick={handleButtonClick}
         type='button'

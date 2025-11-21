@@ -43,27 +43,17 @@ export default function ImageUpload({ size = 'Small', onFileChange }: ImageUploa
 
   // Blob URL 생성 및 클린업
   useEffect(() => {
-    let url: string | null = null;
-    let id: number;
-
-    if (file) {
-      url = URL.createObjectURL(file);
-
-      // setPreview를 비동기적으로 처리
-      id = setTimeout(() => setPreview(url), 0);
-    } else {
-      // file이 null이면 preview도 null, 비동기 처리
-      id = setTimeout(() => setPreview(null), 0);
-    }
-
-    return () => {
-      if (id) {
-        clearTimeout(id);
+    const timeout = setTimeout(() => {
+      if (!file) {
+        setPreview(null);
+        return;
       }
-      if (url) {
-        URL.revokeObjectURL(url);
-      }
-    };
+
+      const url = URL.createObjectURL(file);
+      setPreview(url);
+    }, 0);
+
+    return () => clearTimeout(timeout);
   }, [file]);
 
   return (

@@ -9,6 +9,9 @@ export default function App() {
       <div>
         <ImageUpload size='Large' />
       </div>
+      <div className='flex flex-col gap-5 bg-base p-8'>
+        <ImageUpload />
+      </div>
     </div>
   );
 }

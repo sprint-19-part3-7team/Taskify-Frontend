@@ -18,7 +18,7 @@ type ImageUploadProps = {
  * <ImageUpload size="Large" />
  */
 
-export function ImageUpload({ size = 'Small', onFileChange }: ImageUploadProps) {
+export default function ImageUpload({ size = 'Small', onFileChange }: ImageUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -70,7 +70,7 @@ export function ImageUpload({ size = 'Small', onFileChange }: ImageUploadProps) 
     <div className='relative inline-block'>
       <button
         className={cn(
-          'flex items-center justify-center overflow-hidden rounded-md bg-gray-200',
+          'flex cursor-pointer items-center justify-center overflow-hidden rounded-md bg-gray-200',
           size === 'Small' && 'h-[58px] w-[58px] sm:h-[76px] sm:w-[76px]',
           size === 'Large' && 'h-[100px] w-[100px] sm:h-[182px] sm:w-[182px]'
         )}
@@ -88,9 +88,7 @@ export function ImageUpload({ size = 'Small', onFileChange }: ImageUploadProps) 
         <button
           onClick={handleRemoveImage}
           type='button'
-          className={cn(
-            'absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-gray-600'
-          )}>
+          className='absolute top-1 right-1 flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-gray-600'>
           <Icons.Close className='text-white h-4 w-4 text-gray-0' />
         </button>
       )}

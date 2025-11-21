@@ -4,7 +4,7 @@ import { cn } from '@/utils/cn';
 
 const ButtonStyle = cva(
   `bg-gray-0 rounded-lg flex items-center justify-center border-[1px] border-solid border-gray-300 
-  cursor-pointer disabled:bg-gray-400 disabled:border-none`,
+  cursor-pointer disabled:bg-gray-400 disabled:border-none disabled:cursor-default`,
   {
     variants: {
       theme: {
@@ -30,7 +30,8 @@ const ButtonStyle = cva(
 interface ButtonProps<T extends React.ElementType> extends VariantProps<typeof ButtonStyle> {
   as?: T;
   children: ReactNode;
-  disabled: boolean;
+  type?: React.ComponentProps<'button'>['type'];
+  disabled?: boolean;
   className?: string;
   onClick?: () => void;
 }
@@ -62,9 +63,11 @@ export default function Button<T extends React.ElementType = 'button'>({
   children,
   theme,
   size,
+  type = 'submit',
   disabled,
   className,
   onClick,
+  ...props
 }: AsProps<T>) {
   const Component = as || 'button';
   return (
@@ -72,9 +75,12 @@ export default function Button<T extends React.ElementType = 'button'>({
       <Component
         className={cn(ButtonStyle({ theme, size }), className)}
         disabled={disabled}
-        onClick={onClick}>
+        onClick={onClick}
+        type={type}
+        {...props}>
         {children}
       </Component>
     </>
   );
 }
+//TODO: hover 디자인 반영

@@ -60,7 +60,7 @@ export default function ImageUpload({ size = 'Small', onFileChange }: ImageUploa
     <div className='relative inline-block'>
       <button
         className={cn(
-          'flex cursor-pointer items-center justify-center overflow-hidden rounded-md bg-gray-200',
+          'relative flex cursor-pointer items-center justify-center overflow-hidden rounded-md bg-gray-200',
           size === 'Small' && 'h-[58px] w-[58px] sm:h-[76px] sm:w-[76px]',
           size === 'Large' && 'h-[100px] w-[100px] sm:h-[182px] sm:w-[182px]'
         )}
@@ -72,16 +72,17 @@ export default function ImageUpload({ size = 'Small', onFileChange }: ImageUploa
           backgroundPosition: 'center',
         }}>
         {!preview && <Icons.Plus className='h-7 w-7 text-violet-500' />}
-      </button>
 
-      {preview && (
-        <button
-          onClick={handleRemoveImage}
-          type='button'
-          className='absolute top-1 right-1 flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-gray-600'>
-          <Icons.Close className='text-white h-4 w-4 text-gray-0' />
-        </button>
-      )}
+        {preview && (
+          <button
+            onClick={handleRemoveImage}
+            type='button'
+            className='absolute top-[6px] right-[6px] flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-gray-600'
+            style={{ pointerEvents: 'auto' }}>
+            <Icons.Close className='text-white h-4 w-4 text-gray-0' />
+          </button>
+        )}
+      </button>
 
       <input
         type='file'

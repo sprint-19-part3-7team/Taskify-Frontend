@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Icons from '@/assets/icons';
 import { cn } from '@/utils/cn';
 
 type ImageUploadProps = {
-  size?: 'Small' | 'Large'; // 버튼 크기 선택
+  size?: 'Small' | 'Large';
+  onFileChange?: (file: File | null) => void;
 };
 
 /**
@@ -17,47 +18,60 @@ type ImageUploadProps = {
  * <ImageUpload size="Large" />
  */
 
-export function ImageUpload({ size = 'Small' }: ImageUploadProps) {
+export function ImageUpload({ size = 'Small', onFileChange }: ImageUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [preview, setPreview] = useState<string | null>(null); // 선택한 이미지의 URL 저장
+  const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+
   const handleButtonClick = () => inputRef.current?.click();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files || e.target.files.length === 0) {
-      return;
-    }
-
-    const file = e.target.files[0];
-
-    const url = URL.createObjectURL(file);
-    setPreview(url);
+    const selectedFile = e.target.files?.[0] || null;
+    setFile(selectedFile);
+    onFileChange?.(selectedFile);
   };
 
-  // X 버튼 누르면 사진 제거
   const handleRemoveImage = (e: React.MouseEvent) => {
-    e.stopPropagation(); // 버튼 눌러도 다른 버튼에 영향을 안 줌
-
+    e.stopPropagation();
+    setFile(null);
     setPreview(null);
     if (inputRef.current) {
       inputRef.current.value = '';
     }
+    onFileChange?.(null);
   };
+
+  // Blob URL 생성 및 클린업
+  useEffect(() => {
+    let url: string | null = null;
+    let id: number;
+
+    if (file) {
+      url = URL.createObjectURL(file);
+
+      // setPreview를 비동기적으로 처리
+      id = setTimeout(() => setPreview(url), 0);
+    } else {
+      // file이 null이면 preview도 null, 비동기 처리
+      id = setTimeout(() => setPreview(null), 0);
+    }
+
+    return () => {
+      if (id) {
+        clearTimeout(id);
+      }
+      if (url) {
+        URL.revokeObjectURL(url);
+      }
+    };
+  }, [file]);
 
   return (
     <div className='relative inline-block'>
-      {/* 이미지 선택 버튼 */}
       <button
         className={cn(
           'flex items-center justify-center overflow-hidden rounded-md bg-gray-200',
-
-          // Small 사이즈
-          // - 모바일 기본: 58px
-          // - sm(640px~): 76px
           size === 'Small' && 'h-[58px] w-[58px] sm:h-[76px] sm:w-[76px]',
-
-          // Large 사이즈
-          // - 모바일 기본: 100px
-          // - sm(640px~): 182px
           size === 'Large' && 'h-[100px] w-[100px] sm:h-[182px] sm:w-[182px]'
         )}
         onClick={handleButtonClick}
@@ -70,7 +84,6 @@ export function ImageUpload({ size = 'Small' }: ImageUploadProps) {
         {!preview && <Icons.Plus className='h-7 w-7 text-violet-500' />}
       </button>
 
-      {/* 이미지가 있으면 닫기 버튼 표시 */}
       {preview && (
         <button
           onClick={handleRemoveImage}
@@ -82,7 +95,6 @@ export function ImageUpload({ size = 'Small' }: ImageUploadProps) {
         </button>
       )}
 
-      {/* 실제 파일 input (화면에는 숨김) */}
       <input
         type='file'
         accept='image/*'

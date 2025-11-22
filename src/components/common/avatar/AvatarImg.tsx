@@ -11,7 +11,7 @@ export default function AvatarImg() {
       className='h-full w-full object-cover'
       src={profileImageUrl}
       alt={`${nickname}님의 프로필`}
-      onError={() => setImageError((prev) => !prev)}
+      onError={() => setImageError(true)}
     />
   );
 }

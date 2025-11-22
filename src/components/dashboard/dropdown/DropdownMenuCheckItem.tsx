@@ -21,7 +21,7 @@ export default function DropdownMenuCheckItem({ children, value }: DropdownMenuC
       setSelectedNode(children);
     }
     setIsOpen(false);
-    setSearchQuery?.('');
+    setSearchQuery('');
   };
 
   return (

@@ -25,7 +25,7 @@ export default function DropdownMenuSearchTrigger({
   const handleTriggerClick = () => {
     setIsOpen(!isOpen);
     if (!isOpen) {
-      setSearchQuery?.('');
+      setSearchQuery('');
     }
   };
 
@@ -40,7 +40,7 @@ export default function DropdownMenuSearchTrigger({
           type='text'
           name={name}
           value={searchQuery}
-          onChange={(e) => setSearchQuery?.(e.target.value)}
+          onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={placeholder}
           className='w-full focus:outline-0'
           onClick={(e) => e.stopPropagation()}

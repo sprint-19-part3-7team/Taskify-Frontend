@@ -74,13 +74,12 @@ export default function ImageUpload({ size = 'Small', onFileChange }: ImageUploa
         {!preview && <Icons.Plus className='h-7 w-7 text-violet-500' />}
 
         {preview && (
-          <button
+          <div
             onClick={handleRemoveImage}
-            type='button'
             className='absolute top-[6px] right-[6px] flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-gray-600'
             style={{ pointerEvents: 'auto' }}>
             <Icons.Close className='text-white h-4 w-4 text-gray-0' />
-          </button>
+          </div>
         )}
       </button>
 

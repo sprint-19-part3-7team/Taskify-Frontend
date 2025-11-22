@@ -1,25 +1,34 @@
-import { useContext } from 'react';
 import Icons from '@/assets/icons';
-import { DropdownMenuContext } from '@/context/dropdownMenuContext';
+import useDropdownMenuContext from '@/hooks/useDropdownMenuContext';
 
-interface DropdownMenuCheckItemProps {
+export interface DropdownMenuCheckItemProps {
   children: React.ReactNode;
   value: string;
 }
 
 export default function DropdownMenuCheckItem({ children, value }: DropdownMenuCheckItemProps) {
-  const { value: selectedValue, onValueChange, handleToggleOpen } = useContext(DropdownMenuContext);
+  const { selectedValue, setSelectedValue, setIsOpen, setSearchQuery, setSelectedNode } =
+    useDropdownMenuContext();
+
+  const isSelected = selectedValue === value;
 
   const handleListClick = () => {
-    onValueChange?.(value);
-    handleToggleOpen();
+    if (isSelected) {
+      setSelectedValue?.('');
+      setSelectedNode(null);
+    } else {
+      setSelectedValue?.(value);
+      setSelectedNode(children);
+    }
+    setIsOpen(false);
+    setSearchQuery('');
   };
 
   return (
     <li
-      className='relative flex h-12 dropdown-menu-item-base items-center gap-2 pl-[46px] hover:bg-gray-200'
+      className='relative flex h-12 dropdown-menu-item-base items-center gap-2 pl-[46px] hover:bg-gray-100'
       onClick={handleListClick}>
-      {selectedValue === value && (
+      {isSelected && (
         <Icons.Check width={22} height={22} className='absolute left-4 text-gray-500' />
       )}
       {children}

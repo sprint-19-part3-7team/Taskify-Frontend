@@ -1,9 +1,8 @@
-import { useContext } from 'react';
-import { DropdownMenuContext } from '@/context/dropdownMenuContext';
+import useDropdownMenuContext from '@/hooks/useDropdownMenuContext';
 import { cn } from '@/utils/cn';
 
 interface DropdownMenuTriggerProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
   ariaLabel?: string;
   className?: string;
 }
@@ -13,16 +12,15 @@ export default function DropdownMenuTrigger({
   ariaLabel,
   className,
 }: DropdownMenuTriggerProps) {
-  const { handleToggleOpen } = useContext(DropdownMenuContext);
+  const { setIsOpen, isOpen } = useDropdownMenuContext();
 
   return (
-    <div
-      role='button'
-      tabIndex={0}
+    <button
       className={cn('flex cursor-pointer', className)}
-      onClick={handleToggleOpen}
+      type='button'
+      onClick={() => setIsOpen(!isOpen)}
       aria-label={ariaLabel}>
       {children}
-    </div>
+    </button>
   );
 }

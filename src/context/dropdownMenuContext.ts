@@ -1,10 +1,14 @@
 import { createContext } from 'react';
 
-interface DropdownMenuContextType {
+export interface DropdownMenuContextType {
   isOpen: boolean;
-  handleToggleOpen: () => void;
-  value?: string;
-  onValueChange?: React.Dispatch<React.SetStateAction<string>>;
+  setIsOpen: (isOpen: boolean) => void;
+  selectedValue?: string;
+  setSelectedValue?: (value: string) => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+  selectedNode: null | React.ReactNode;
+  setSelectedNode: (node: null | React.ReactNode) => void;
 }
 
-export const DropdownMenuContext = createContext({} as DropdownMenuContextType);
+export const DropdownMenuContext = createContext<DropdownMenuContextType | null>(null);

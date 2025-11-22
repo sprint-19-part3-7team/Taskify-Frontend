@@ -5,7 +5,7 @@ interface useDropdownMenuProps {
   onValueChange?: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const useDropdownMenu = ({ value, onValueChange }: useDropdownMenuProps) => {
+const useDropdownMenu = ({ value, onValueChange }: useDropdownMenuProps = {}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggleOpen = () => {

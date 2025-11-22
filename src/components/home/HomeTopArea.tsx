@@ -16,7 +16,6 @@ export default function HomeTopArea() {
         </span>
       </Title>
       <Button
-        disabled
         as={Link}
         to={'/login'}
         size={'lg'}

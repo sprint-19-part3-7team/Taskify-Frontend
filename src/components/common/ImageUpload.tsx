@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useMemo } from 'react';
 import Icons from '@/assets/icons';
 import { cn } from '@/utils/cn';
 
@@ -10,7 +10,9 @@ type ImageUploadProps = {
 
 export default function ImageUpload({ size = 'Small', onFileChange, file }: ImageUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const preview = file ? URL.createObjectURL(file) : null;
+  const preview = useMemo(() => {
+    return file ? URL.createObjectURL(file) : null;
+  }, [file]);
 
   // 파일 선택 버튼 클릭
   const handleButtonClick = () => inputRef.current?.click();
@@ -66,9 +68,8 @@ export default function ImageUpload({ size = 'Small', onFileChange, file }: Imag
           aria-label='삭제 버튼'
           type='button'
           onClick={handleRemoveImage}
-          className='absolute top-[6px] right-[6px] flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-gray-600'
-          style={{ pointerEvents: 'auto' }}>
-          <Icons.Close className='text-white h-4 w-4 text-gray-0' />
+          className='absolute top-[6px] right-[6px] flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-gray-600'>
+          <Icons.Close className='h-4 w-4 text-gray-0' />
         </button>
       )}
 

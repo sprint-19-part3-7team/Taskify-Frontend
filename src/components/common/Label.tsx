@@ -1,7 +1,9 @@
 import type { ComponentPropsWithoutRef } from 'react';
+import { cn } from '@/utils/cn';
 
-type LabelProps = ComponentPropsWithoutRef<'label'>;
-
+interface LabelProps extends ComponentPropsWithoutRef<'label'> {
+  required?: boolean; // true면 '*' 표시
+}
 /**
  * Label 컴포넌트 (공통 라벨)
  *
@@ -16,10 +18,18 @@ type LabelProps = ComponentPropsWithoutRef<'label'>;
  *
  *   <input id="username" type="text" />
  */
-export default function Label({ htmlFor, children, className, ...props }: LabelProps) {
+
+export default function Label({
+  htmlFor,
+  children,
+  className,
+  required = false,
+  ...props
+}: LabelProps) {
   return (
-    <label htmlFor={htmlFor} className={className} {...props}>
+    <label htmlFor={htmlFor} className={cn('text-gray-700', className)} {...props}>
       {children}
+      {required && <span className='font-lg-regular text-violet-500'>*</span>}
     </label>
   );
 }

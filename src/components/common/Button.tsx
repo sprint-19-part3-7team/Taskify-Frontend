@@ -78,16 +78,6 @@ export default function Button<T extends React.ElementType = 'button'>({
     onClick,
     ...props,
   };
-  return (
-    <Component
-      // className={cn(ButtonStyle({ theme, size }), className)}
-      // disabled={disabled}
-      // onClick={onClick}
-      // type={type}
-      // {...props}
-      {...componentProps}>
-      {children}
-    </Component>
-  );
+  return <Component {...componentProps}>{children}</Component>;
 }
 //TODO: hover 디자인 반영

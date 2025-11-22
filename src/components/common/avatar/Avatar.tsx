@@ -13,7 +13,7 @@ interface AvatarProps {
 
 /**
  * @example
- * <Avatar size="s" user={user}>
+ * <Avatar size="s" user={user} key={user.id}>
  *  <Avatar.Img />
  *  <Avatar.Fallback />
  * </Avatar>

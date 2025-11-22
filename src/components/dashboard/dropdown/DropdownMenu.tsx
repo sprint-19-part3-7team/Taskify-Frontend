@@ -21,21 +21,27 @@ interface DropdownMenuProps {
  *
  * 내부에서 드롭다운의 열림/닫힘 상태, 검색어, 선택된 값 등을 관리하며
  * 하위 컴포넌트에 Context 형태로 전달합니다.
- * 기본 width가 full로 설정되어 있어서 메뉴 리스트의 위치가 잘못 렌더링되고 있다면,
- * className props에 `w-fit`을 추가해주세요!
+ *
+ * 기본 width는 `w-full`로 설정되어 있습니다. (Dropdown 2 유형에 적합)
+ * 케밥 메뉴와 같이 컨텐츠 크기에 맞춰야 하는 경우(Dropdown 1 유형),
+ * className props에 `w-fit`을 추가해주세요.
  *
  * @example
- * <DropdownMenu className={'w-fit'}>
+ * // Dropdown 2 - 부모 너비에 맞춤 (기본값)
+ * <DropdownMenu>
+ *   <DropdownMenu.SearchTrigger placeholder="담당자 선택" />
+ *   <DropdownMenu.CheckList>...</DropdownMenu.CheckList>
+ * </DropdownMenu>
+ *
+ * @example
+ * // Dropdown 1 - 컨텐츠 크기에 맞춤
+ * <DropdownMenu className="w-fit">
  *   <DropdownMenu.Trigger>
  *     <Icons.KebabMore />
  *   </DropdownMenu.Trigger>
- *   <DropdownMenu.List>
- *     <DropdownMenu.Item onClick={() => console.log('편집')}>편집</DropdownMenu.Item>
- *     <DropdownMenu.Item onClick={() => console.log('삭제')}>삭제</DropdownMenu.Item>
- *   </DropdownMenu.List>
+ *   <DropdownMenu.List>...</DropdownMenu.List>
  * </DropdownMenu>
  */
-
 export default function DropdownMenu({
   children,
   value,
@@ -117,7 +123,7 @@ DropdownMenu.CheckList = DropdownMenuCheckList;
 /**
  * 드롭다운 메뉴에서 선택 가능한 체크 아이템 컴포넌트입니다.
  *
- * 선택 시 부모 `DropdownMenu`에 설정된 value/onValueChange를 통해 선택 값이 반영됩니다.
+ * 선택 시 부모 `DropdownMenu`에 설정된 value/onChangeValue 통해 선택 값이 반영됩니다.
  *
  * @example
  *  <DropdownMenu.CheckItem value="홍길동">

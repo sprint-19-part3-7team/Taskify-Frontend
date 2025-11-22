@@ -2,7 +2,7 @@ import useDropdownMenuContext from '@/hooks/useDropdownMenuContext';
 import { cn } from '@/utils/cn';
 
 interface DropdownMenuTriggerProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
   ariaLabel?: string;
   className?: string;
 }

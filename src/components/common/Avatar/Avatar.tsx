@@ -1,23 +1,25 @@
 import React from 'react';
 import AvatarFallback from '@/components/common/Avatar/AvatarFallback';
 import AvatarImg from '@/components/common/Avatar/AvatarImg';
+import { AvatarContext } from '@/context/avatarContext';
+import type { UserMe } from '@/types/user-me';
 import { cn } from '@/utils/cn';
 
 interface AvatarProps {
   children: React.ReactNode;
   size: 's' | 'm';
-  profileImgUrl: string | null;
+  user: UserMe;
 }
 
 /**
  * @example
- * <Avatar size="s" profileImgUrl={user.profileImgUrl}>
- *  <AvatarImg profileImgUrl={user.profileImgUrl} nickname={user.nickname}/>
- *  <AvatarFallback nickname={user.nickname} id={user.id}/>
+ * <Avatar size="s" user={user}>
+ *  <AvatarImg />
+ *  <AvatarFallback />
  * </Avatar>
  */
 
-export default function Avatar({ children, size, profileImgUrl }: AvatarProps) {
+export default function Avatar({ children, size, user }: AvatarProps) {
   const AvatarStyle = cn('rounded-full overflow-hidden', {
     'w-[24px] h-[24px] ': size === 's',
     'w-[38px] h-[38px] border-2 border-gray-0': size === 'm',
@@ -30,9 +32,15 @@ export default function Avatar({ children, size, profileImgUrl }: AvatarProps) {
   const fallback = React.Children.toArray(children).find(
     (child) => React.isValidElement(child) && child.type === AvatarFallback
   );
-  return <div className={AvatarStyle}>{profileImgUrl ? img : fallback}</div>;
+  return (
+    <AvatarContext value={user}>
+      <div className={AvatarStyle}>{user.profileImageUrl ? img : fallback}</div>
+    </AvatarContext>
+  );
 }
 
 Avatar.AvatarImg = AvatarImg;
 
 Avatar.AvatarFallback = AvatarFallback;
+
+//TODO: 이미지에 오류가 생겼을 때 AvatarFallback 노출하기
